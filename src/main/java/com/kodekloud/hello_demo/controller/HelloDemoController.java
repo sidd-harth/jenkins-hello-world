@@ -1,4 +1,4 @@
-package com.kodekloud.hello_demo;
+package com.kodekloud.hello_demo.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;

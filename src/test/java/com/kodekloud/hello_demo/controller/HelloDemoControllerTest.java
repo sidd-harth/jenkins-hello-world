@@ -1,4 +1,4 @@
-package com.kodekloud.hello_demo;
+package com.kodekloud.hello_demo.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
