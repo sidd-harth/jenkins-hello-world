@@ -1,5 +1,6 @@
 package com.kodekloud.hello_demo;
 
+import com.kodekloud.hello_demo.HelloController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -28,7 +29,7 @@ public class HelloControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("Hello, KodeKloud community!")));
     }
-    
+
     @Test
     public void testHello_returnsNotNull() {
         String response = helloController.hello();
