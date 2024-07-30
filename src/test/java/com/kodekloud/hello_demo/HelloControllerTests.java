@@ -1,6 +1,6 @@
 package com.kodekloud.hello_demo;
 
-import com.kodekloud.hello_demo.HelloController;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -8,8 +8,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import com.kodekloud.hello_demo.*;
 
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,32 +33,42 @@ public class HelloControllerTests {
     }
 
     @Test
-    public void testHello_returnsNotNull() {
-        String response = helloController.hello();
-        assertNotNull(response); // Assert response is not null
+    public void welcome_returnsNotNull() throws Exception {
+      mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
+          .andExpect(status().isOk())
+          .andExpect(content().string(notNullValue()));
+
     }
 
     @Test
-    public void testHello_returnsNotEmptyString() {
-        String response = helloController.hello();
-        assertFalse(response.isEmpty()); // Assert response is not empty string
+    public void welcome_returnsNotEmpty() throws Exception {
+      mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
+          .andExpect(status().isOk())
+          .andExpect(content().string(not(isEmptyString()))); 
+
     }
 
     @Test
-    public void testHello_returnsStringWithCorrectLength() {
-        String response = helloController.hello();
-        assertEquals(21, response.length()); // Assert response length is 21
+    public void welcome_returnsCorrectLength() throws Exception {
+      mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
+          .andExpect(status().isOk())
+          .andExpect(content().string(hasLength(27))); 
+
     }
 
     @Test
-    public void testHello_startsWithExpectedGreeting() {
-        String response = helloController.hello();
-        assertTrue(response.startsWith("Hello"));  // Assert starts with "Hello"
+    public void welcome_startsWithExpectedGreeting() throws Exception {
+      mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
+          .andExpect(status().isOk())
+          .andExpect(content().string(startsWith("Hello"))); 
+
     }
 
     @Test
-    public void testHello_endsWithExpectedGreeting() {
-        String response = helloController.hello();
-        assertTrue(response.endsWith("Users!")); // Assert ends with "Users!"
+    public void welcome_endsWithExpectedGreeting() throws Exception {
+      mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
+          .andExpect(status().isOk())
+          .andExpect(content().string(endsWith("community!")));
+
     }
-}
+  }
