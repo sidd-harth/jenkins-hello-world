@@ -1,27 +1,29 @@
-package com.kodekloud.hello_demo.controller;
+package com.kodekloud.hello_demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HelloDemoControllerTest {
+public class HelloControllerTests {
 
     @Autowired
-    private MockMvc mockMvc;
+    private MockMvc mvc;
 
     @Test
-    public void shouldReturnExpectedMessage() throws Exception {
-
-        mockMvc.perform(get("/hello"))
+    public void welcome_ok() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Hello KodeKloud Users!"));
+                .andExpect(content().string(equalTo("Hello World, Spring Boot!")));
     }
+
 }
