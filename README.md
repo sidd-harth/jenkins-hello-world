@@ -1,3 +1,4 @@
 This repo is used for Jenkins demos
 
-It has 6 working test cases
+It has 5 working test cases
+1 test case fails! 
