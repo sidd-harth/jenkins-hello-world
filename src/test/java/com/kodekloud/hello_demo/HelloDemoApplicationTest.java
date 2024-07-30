@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package com.kodekloud.hello_demo;
 
 import com.example.helloworld.controller.HelloWorldController;
 import org.junit.jupiter.api.Test;
