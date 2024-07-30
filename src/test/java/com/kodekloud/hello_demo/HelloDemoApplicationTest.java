@@ -1,6 +1,6 @@
 package com.kodekloud.hello_demo;
 
-import com.example.helloworld.controller.HelloWorldController;
+import com.kodekloud.hello_demo.controller.HelloDemoController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
